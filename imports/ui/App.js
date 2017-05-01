@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../../client/main.css';
 import AddBtn from './AddBtn.js';
-import Form from './Form.js';
 import Entries from './Entries.js';
 
 import {createContainer} from 'meteor/react-meteor-data';
@@ -21,10 +20,6 @@ class App extends Component {
     }
     hideForm = () => {
         this.setState({formVisible: false});
-    }
-    nextId() {
-        this.uniqueId = this.uniqueId || 0
-        return this.uniqueId++
     }
     handleSubmit = e => {
         e.preventDefault(); //prevent form from refreshing the page
