@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background-image: url("back.jpg");
+  background-repeat: repeat;
+}
+
+.form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+#entryContain{
+  border-bottom:2px dashed #000;
+  padding-bottom:1em;
+  padding-top:1em;
+  margin-top:5px;
+}
+
+#entryContain:hover{
+  background-color: #cecece;
+}
+
+.form>input,
+.form>button,
+.entryBtn {
+  margin-bottom: 1em;
+  padding: 1em;
+  background: none;
+  -webkit-transition: background 300ms ease-in-out;
+  -moz-transition: background 300ms ease-in-out;
+  -ms-transition: background 300ms ease-in-out;
+  -o-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+  border: 1px solid darkslategrey;
+}
+
+.form>input {
+  width: 90%;
+}
+
+.form>button,
+.entryBtn,
+.form>#submitbtn {
+  width: 40%;
+  margin: 2px;
+  background-color:#dedede;
+}
+
+.form>button:hover,
+.form>#submitbtn:hover,
+.entryBtn:hover {
+  background-color: #ccc;
+}
+
+.header {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.header>button {
+  background: none;
+  -webkit-transition: background 300ms ease-in-out;
+  -moz-transition: background 300ms ease-in-out;
+  -ms-transition: background 300ms ease-in-out;
+  -o-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+  border: none;
+  font-size: 1.5em;
+}
+
+.header>button:hover {
+  cursor: pointer;
+}
+
+.search {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.search>input,
+.search>button {
+  margin-top: 10px;
+  padding: 1em;
+  background: none;
+  -webkit-transition: background 300ms ease-in-out;
+  -moz-transition: background 300ms ease-in-out;
+  -ms-transition: background 300ms ease-in-out;
+  -o-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+  border: 1px solid darkslategrey;
+}
+
+.search>button:hover {
+  background-color: #ccc;
+}
