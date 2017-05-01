@@ -1,6 +1,6 @@
 # Contact-Book-App
-## to run, first install meteor js
-## then in the command line, navigate to the directory and type `meteor`
+to run, first install meteor js
+then in the command line, navigate to the directory and type `meteor`
 
 #TODO
 * Form Validation
