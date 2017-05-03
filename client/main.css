@@ -14,15 +14,15 @@ body {
   margin: 0 auto;
 }
 
-#entryContain{
+.entryContain{
   border-bottom:2px dashed #000;
   padding-bottom:1em;
   padding-top:1em;
   margin-top:5px;
 }
 
-#entryContain:hover{
-  background-color: #cecece;
+.entryContain:hover{
+  background-color: lightcyan;
 }
 
 .form>input,
@@ -99,4 +99,33 @@ body {
 
 .search>button:hover {
   background-color: #ccc;
+}
+
+@-webkit-keyframes fadeIt {
+  0%   { background-color: none; }
+  50%  { background-color: lightcyan; }
+  100% { background-color: none; }
+}
+@-moz-keyframes fadeIt {
+  0%   { background-color: none; }
+  50%  { background-color: lightcyan; }
+  100% { background-color: none; }
+}
+@-o-keyframes fadeIt {
+  0%   { background-color: none; }
+  50%  { background-color: lightcyan; }
+  100% { background-color: none; }
+}
+@keyframes fadeIt {
+  0%   { background-color: none; }
+  50%  { background-color: lightcyan; }
+  100% { background-color: none; }
+}
+
+.backgroundAnimated{    
+    background-image:none !important;
+    -webkit-animation: fadeIt 2.5s ease-in-out; 
+       -moz-animation: fadeIt 2.5s ease-in-out; 
+         -o-animation: fadeIt 2.5s ease-in-out; 
+            animation: fadeIt 2.5s ease-in-out; 
 }

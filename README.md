@@ -10,8 +10,9 @@
 #### launch in command line by typing `meteor`
 
 # TODO
-* Phone Input Form Validation
-* After new entry submits, scroll to the entry and highlight
+* Phone Input Form Validation -- done!
+* After new entry submits, scroll to the entry and highlight --highlighting, but scrolling may take an npm package
 * search function
 * prevent duplicate entries
 * clean form submission
+* Add user accounts

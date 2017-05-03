@@ -3,11 +3,14 @@ import '../../client/main.css';
 
 import {Collection} from '../api/entries.js';
 
+const style = {}
+
 class Entries extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            editing: false
+            editing: false,
+            class: ""
         };
     }
     remove() {
@@ -28,6 +31,9 @@ class Entries extends Component {
             }
         });
         this.setState({editing: false});
+    }
+    componentDidMount() {
+        this.setState({class: "backgroundAnimated"});
     }
     renderForm() {
         return (
@@ -71,6 +77,8 @@ class Entries extends Component {
                 <input
                     type="tel"
                     name="phone"
+                    pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
+                    title="Must be a valid 10-digit telephone number!"
                     placeholder="phone number"
                     ref="newPhone"
                     defaultValue={this.props.entry.phone}
@@ -81,7 +89,7 @@ class Entries extends Component {
     }
     renderEntry() {
         return (
-            <div id="entryContain">
+            <div ref="newEntry" className={this.state.class + " entryContain"}>
                 <h1>{this.props.entry.fname} {this.props.entry.lname}</h1>
                 <p>
                     <strong>

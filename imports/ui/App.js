@@ -70,9 +70,13 @@ class App extends Component {
         return (
             <div className="header">
                 <h1 id="p2">Contact Book</h1>
-                <form className="search">
-                    <input type="text" name="search" placeholder="Search by last name"/>
-                    <button type="button">Search</button>
+                <form className="search" onSubmit="">
+                    <input
+                        ref="search"
+                        type="search"
+                        name="search"
+                        placeholder="Search by last name"/>
+                    <input type="submit" value="Search"/>
                 </form>
                 {this.state.formVisible
                     ? <form className="form" id="addform" name="addform" onSubmit={this.handleSubmit}>
@@ -85,7 +89,14 @@ class App extends Component {
                                 name="address"
                                 placeholder="address"
                                 required/>
-                            <input ref="phone" type="tel" name="phone" placeholder="phone number" required/>
+                            <input
+                                ref="phone"
+                                pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
+                                title="Must be a valid 10-digit telephone number!"
+                                type="tel"
+                                name="phone"
+                                placeholder="phone number"
+                                required/>
                             <input type="submit" id="submitbtn" value="Submit"/>
                             <button type="button" id="closebtn" onClick={this.hideForm}>
                                 Close</button>
@@ -102,7 +113,11 @@ class App extends Component {
 
 export default createContainer(() => {
     return {
-        entries: Collection.find({}) //passing entries as a prop to App and then getting all the contacts in the collection
+        entries: Collection.find({}, {
+            sort: {
+                fname: 1
+            }
+        }) //passing entries as a prop to App and then getting all the contacts in the collection
             .fetch()
     };
 }, App);
