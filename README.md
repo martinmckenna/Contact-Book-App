@@ -12,7 +12,7 @@
 # TODO
 * Phone Input Form Validation -- done!
 * After new entry submits, scroll to the entry and highlight --highlighting, but scrolling may take an npm package
-* search function
+* search function -- DONE
 * prevent duplicate entries
 * clean form submission
 * Add user accounts

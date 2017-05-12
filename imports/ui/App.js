@@ -21,6 +21,19 @@ class App extends Component {
     hideForm = () => {
         this.setState({formVisible: false});
     }
+    search = () => {
+        let searchFormValue = this.refs.search.value;
+        var eachEntryContainer = document.getElementsByClassName("entryContain");
+        for (let i = 0; i < eachEntryContainer.length; i++) {
+            let thisEntry = eachEntryContainer[i];
+            if (thisEntry.getElementsByTagName("div")[0].textContent.includes(searchFormValue)) {
+                thisEntry.style.display = "block";
+            } else {
+                thisEntry.style.display = "none";
+            }
+        }
+
+    }
     handleSubmit = e => {
         e.preventDefault(); //prevent form from refreshing the page
         var myForm = document.getElementById('addform');
@@ -64,19 +77,21 @@ class App extends Component {
         return this
             .props
             .entries
-            .map((entry) => (<Entries key={entry._id} entry={entry}/>)); //entries was passed to App as a prop at the bottom of this file. entries are in the collection
+            .map((entry) => (<Entries key={entry._id} entry={entry}/>)); //entries was passed to App as a prop at the bottom of this file
     }
     render() {
         return (
             <div className="header">
                 <h1 id="p2">Contact Book</h1>
-                <form className="search" onSubmit="">
+                <form className="search">
                     <input
                         ref="search"
                         type="search"
                         name="search"
-                        placeholder="Search by last name"/>
-                    <input type="submit" value="Search"/>
+                        onKeyUp={this
+                        .search
+                        .bind(this)}
+                        placeholder="Begin typing to search"/>
                 </form>
                 {this.state.formVisible
                     ? <form className="form" id="addform" name="addform" onSubmit={this.handleSubmit}>

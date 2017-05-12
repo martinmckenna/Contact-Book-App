@@ -90,25 +90,27 @@ class Entries extends Component {
     renderEntry() {
         return (
             <div ref="newEntry" className={this.state.class + " entryContain"}>
-                <h1>{this.props.entry.fname} {this.props.entry.lname}</h1>
-                <p>
-                    <strong>
-                        <em>Email:
-                        </em>
-                    </strong>
-                    {" " + this.props.entry.email}</p>
-                <p>
-                    <strong>
-                        <em>Address:
-                        </em>
-                    </strong>
-                    {" " + this.props.entry.address}</p>
-                <p>
-                    <strong>
-                        <em>Phone:
-                        </em>
-                    </strong>
-                    {" " + this.props.entry.phone}</p>
+                <div className="contactContain">
+                    <h1>{this.props.entry.fname} {this.props.entry.lname}</h1>
+                    <p>
+                        <strong>
+                            <em>Email:
+                            </em>
+                        </strong>
+                        {" " + this.props.entry.email}</p>
+                    <p>
+                        <strong>
+                            <em>Address:
+                            </em>
+                        </strong>
+                        {" " + this.props.entry.address}</p>
+                    <p>
+                        <strong>
+                            <em>Phone:
+                            </em>
+                        </strong>
+                        {" " + this.props.entry.phone}</p>
+                </div>
                 <button
                     className="entryBtn"
                     type="button"
