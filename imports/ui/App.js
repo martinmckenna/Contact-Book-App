@@ -139,7 +139,10 @@ class App extends Component {
                         </form>
                     : this.state.formVisible === false && this.props.currentUser
                         ? <AddBtn onClick={this.showForm}/>
-                        : ""
+                        : <div
+                            style={{
+                            margin: 1 + "em"
+                        }}>Create an Account or Login</div>
 }
                 <div className="entryWrapper">{this.renderEntries()}</div>
             </div>
