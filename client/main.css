@@ -14,22 +14,59 @@ body {
   margin: 0 auto;
 }
 
+@media(max-width:700px){
+  .form{
+    width:100%;
+  }
+}
+
 .entryContain{
   border-bottom:2px dashed #000;
   padding-bottom:1em;
   padding-top:1em;
   margin-top:5px;
+  width:45%;
+  flex-grow:1;
+  margin:1em;
 }
 
 .entryContain:hover{
   background-color: lightcyan;
 }
 
+.entryWrapper{
+  width:100%;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-justify-content: center;
+   justify-content: center;
+   /* You can set flex-wrap and flex-direction individually */
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-flex-wrap: wrap;
+   flex-wrap: wrap;
+   /* Or do it all in one line with flex flow */
+   -webkit-flex-flow: row wrap;
+   flex-flow: row wrap;
+   /* tweak the where items line up on the row */
+   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+   -webkit-align-content: flex-end;
+   align-content: flex-end;
+}
+
+#form{
+  width:50%;
+  flex-grow:1;
+}
+
 .form>input,
 .form>button,
 .entryBtn {
   margin-bottom: 1em;
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right:5px;
+  padding-left:5px;
   background: none;
   -webkit-transition: background 300ms ease-in-out;
   -moz-transition: background 300ms ease-in-out;
@@ -78,16 +115,28 @@ body {
   cursor: pointer;
 }
 
+#logo{
+  margin:2em;
+}
+
+#logoimg{
+  width:75px;
+}
+
 .search {
-  width: 60%;
   margin: 0 auto;
   margin-bottom: 1em;
+  width:50%;
 }
 
 .search>input,
 .search>button {
   margin-top: 10px;
-  padding: 1em;
+  width:100%;
+  padding-top: 1em;
+  padding-bottom:1em;
+  padding-left:5px;
+  padding-right:5px;
   background: none;
   -webkit-transition: background 300ms ease-in-out;
   -moz-transition: background 300ms ease-in-out;
@@ -99,6 +148,14 @@ body {
 
 .search>button:hover {
   background-color: #ccc;
+}
+
+.toast-container > span{
+  color:grey;
+}
+
+.toast-container > span div{
+  font-size:1em;
 }
 
 @-webkit-keyframes fadeIt {

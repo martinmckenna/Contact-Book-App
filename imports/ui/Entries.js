@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import '../../client/main.css';
+import Toast from './Toast.js';
+import {ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import {Collection} from '../api/entries.js';
 
@@ -14,23 +17,24 @@ class Entries extends Component {
         };
     }
     remove() {
-        Collection.remove(this.props.entry._id); //remove entire entry where the id matches
+        Meteor.call('entries.remove', this.props.entry._id); //remove entire entry where the id matches
+        toast(<Toast className="toast" whatUpdate="deleted" name={this.props.entry.fname}/>);
     }
     edit() {
         this.setState({editing: true}); //show the editing form
     }
     save(e) {
         e.preventDefault();
-        Collection.update(this.props.entry._id, {
-            $set: {
-                fname: this.refs.newFName.value,
-                lname: this.refs.newLName.value,
-                email: this.refs.newEmail.value,
-                address: this.refs.newAddress.value,
-                phone: this.refs.newPhone.value
-            }
-        });
+        Meteor.call('entries.update', this.props.entry._id, this.refs.newFName.value, this.refs.newLName.value, this.refs.newEmail.value, this.refs.newAddress.value, this.refs.newPhone.value);
         this.setState({editing: false});
+        toast(<Toast
+            className="toast"
+            whatUpdate="updated"
+            name={this
+            .refs
+            .newFName
+            .value
+            .trim()}/>);
     }
     componentDidMount() {
         this.setState({class: "backgroundAnimated"});

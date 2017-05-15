@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import '../../client/main.css';
 import AddBtn from './AddBtn.js';
 import Entries from './Entries.js';
+import Toast from './Toast.js';
+import AccountsUIWrapper from './AccountsUIWrapper.js';
+import {Meteor} from 'meteor/meteor';
+import {ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import {createContainer} from 'meteor/react-meteor-data';
 
@@ -62,38 +67,54 @@ class App extends Component {
             .phone
             .value
             .trim();
-
-        Collection.insert({
-            fname,
-            lname,
-            email,
-            address,
-            phone,
-            createdAt: new Date(), // current time
-        });
+        Meteor.call('entries.insert', fname, lname, email, address, phone); //this method is found in api/entires. All database logic is located there, seperate from the view
+        toast(<Toast
+            whatUpdate="added"
+            className="toast"
+            name={this
+            .refs
+            .fname
+            .value
+            .trim()}/>);
         myForm.reset(); //reset the input fields onsubmit
+
+    }
+    userEntries = (entry) => {
+        if (this.props.currentUser) {
+            return entry.props.entry.username == Meteor //checks if the logged in username is equal to the username data on the entry
+                .user()
+                .username;
+        } else {
+            return;
+        }
+
     }
     renderEntries() {
         return this
             .props
             .entries
-            .map((entry) => (<Entries key={entry._id} entry={entry}/>)); //entries was passed to App as a prop at the bottom of this file
+            .map((entry) => (<Entries key={entry._id} entry={entry}/>))
+            .filter(this.userEntries); //entries was passed to App as a prop at the bottom of this file
     }
     render() {
         return (
             <div className="header">
-                <h1 id="p2">Contact Book</h1>
-                <form className="search">
-                    <input
-                        ref="search"
-                        type="search"
-                        name="search"
-                        onKeyUp={this
-                        .search
-                        .bind(this)}
-                        placeholder="Begin typing to search"/>
-                </form>
-                {this.state.formVisible
+                <div id="logo"><img id="logoimg" src="../img/book.png"/></div>
+                <ToastContainer className="toast-container" autoClose="1500"/>
+                <AccountsUIWrapper/> {this.props.currentUser
+                    ? <form className="search">
+                            <input
+                                ref="search"
+                                type="input"
+                                name="search"
+                                onKeyUp={this
+                                .search
+                                .bind(this)}
+                                placeholder="Begin typing to search"/>
+                        </form>
+                    : <div></div>
+}
+                {this.state.formVisible && this.props.currentUser
                     ? <form className="form" id="addform" name="addform" onSubmit={this.handleSubmit}>
                             <input ref="fname" type="text" name="fname" placeholder="First name" required/>
                             <input ref="lname" type="text" name="lname" placeholder="Last name" required/>
@@ -116,11 +137,11 @@ class App extends Component {
                             <button type="button" id="closebtn" onClick={this.hideForm}>
                                 Close</button>
                         </form>
-                    : this.state.formVisible === false
+                    : this.state.formVisible === false && this.props.currentUser
                         ? <AddBtn onClick={this.showForm}/>
                         : ""
 }
-                {this.renderEntries()}
+                <div className="entryWrapper">{this.renderEntries()}</div>
             </div>
         );
     }
@@ -133,6 +154,7 @@ export default createContainer(() => {
                 fname: 1
             }
         }) //passing entries as a prop to App and then getting all the contacts in the collection
-            .fetch()
+            .fetch(),
+        currentUser: Meteor.user()
     };
 }, App);
