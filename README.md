@@ -1,20 +1,25 @@
-#Demo here: contact.meteorapp.com
+### Demo is located [here](http://contact.meteorapp.com/)
 
 # Contact-Book-App
-#### to run, first download this repo
-#### then install npm dependencies
-* `meteor npm install --save react react-dom`
-* `meteor npm install --save react-addons-pure-render-mixin`
-* `meteor add react-meteor-data`
-* `npm install react-icons --save`
-* `npm install --save-dev babel-plugin-transform-class-properties`
-* `meteor add babel-runtime`
-#### launch in command line by typing `meteor`
+##### Simple contact book application built with React, Meteor.js, and a few other dependencies.
 
 # TODO
-* Phone Input Form Validation -- done!
-* After new entry submits, scroll to the entry and highlight --highlighting, but scrolling may take an npm package
-* search function -- DONE
-* Add user accounts --donzo
-* Make logo
-* DEPLOY!
+* ~~Phone Input Form Validation~~
+* After new entry submits, scroll to the entry and ~~highlight~~
+* ~~search function~~
+* ~~Add user accounts~~
+* ~~Make logo~~
+* ~~DEPLOY!~~
+
+# Post-launch TODO
+* Put into production mode
+* Make phone input validation accept international numbers and improve error text
+* Mobile styling issues
+
+   * Login form should not break out of view
+   * Get rid of "X" on toast since it doesn't look great on mobile
+   * try and restyle login form
+* search should be case-insensitive
+* Get SSL
+* rewrite search function with React logic
+
