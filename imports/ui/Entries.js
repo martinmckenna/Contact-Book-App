@@ -81,13 +81,13 @@ class Entries extends Component {
                 <input
                     type="tel"
                     name="phone"
-                    pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
-                    title="Must be a valid 10-digit telephone number!"
+                    pattern="^([a-zA-Z,#/ \.\(\)\-\+\*]*[0-9]){7}[0-9a-zA-Z,#/ \.\(\)\-\+\*]*$"
+                    title="Please enter a valid phone number!"
                     placeholder="phone number"
                     ref="newPhone"
                     defaultValue={this.props.entry.phone}
                     required/>
-                <input type="submit" id="submitbtn" value="Save"/>
+                <input type="submit" className="submitbtn" value="Save"/>
             </form>
         )
     }

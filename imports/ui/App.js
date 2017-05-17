@@ -31,7 +31,7 @@ class App extends Component {
         var eachEntryContainer = document.getElementsByClassName("entryContain");
         for (let i = 0; i < eachEntryContainer.length; i++) {
             let thisEntry = eachEntryContainer[i];
-            if (thisEntry.getElementsByTagName("div")[0].textContent.includes(searchFormValue)) {
+            if (thisEntry.getElementsByTagName("div")[0].textContent.toLowerCase().includes(searchFormValue.toLowerCase())) { //to lower case because search needs to be case insensitive
                 thisEntry.style.display = "block";
             } else {
                 thisEntry.style.display = "none";
@@ -100,21 +100,11 @@ class App extends Component {
         return (
             <div className="header">
                 <div id="logo"><img id="logoimg" src="../img/book.png"/></div>
-                <ToastContainer className="toast-container" autoClose="1500"/>
-                <AccountsUIWrapper/> {this.props.currentUser
-                    ? <form className="search">
-                            <input
-                                ref="search"
-                                type="input"
-                                name="search"
-                                onKeyUp={this
-                                .search
-                                .bind(this)}
-                                placeholder="Begin typing to search"/>
-                        </form>
-                    : <div></div>
-}
-                {this.state.formVisible && this.props.currentUser
+                <ToastContainer
+                    className="toast-container"
+                    removeCloseButton={true}
+                    autoClose={1500}
+                    position="top-center"/> {this.state.formVisible && this.props.currentUser
                     ? <form className="form" id="addform" name="addform" onSubmit={this.handleSubmit}>
                             <input ref="fname" type="text" name="fname" placeholder="First name" required/>
                             <input ref="lname" type="text" name="lname" placeholder="Last name" required/>
@@ -127,13 +117,13 @@ class App extends Component {
                                 required/>
                             <input
                                 ref="phone"
-                                pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
-                                title="Must be a valid 10-digit telephone number!"
+                                pattern="^([a-zA-Z,#/ \.\(\)\-\+\*]*[0-9]){7}[0-9a-zA-Z,#/ \.\(\)\-\+\*]*$"
+                                title="Please enter a valid phone number!"
                                 type="tel"
                                 name="phone"
                                 placeholder="phone number"
                                 required/>
-                            <input type="submit" id="submitbtn" value="Submit"/>
+                            <input type="submit" className="submitbtn" value="Submit"/>
                             <button type="button" id="closebtn" onClick={this.hideForm}>
                                 Close</button>
                         </form>
@@ -143,6 +133,19 @@ class App extends Component {
                             style={{
                             margin: 1 + "em"
                         }}>Create an Account or Login</div>
+}
+                <AccountsUIWrapper/> {this.props.currentUser
+                    ? <form className="search">
+                            <input
+                                ref="search"
+                                type="input"
+                                name="search"
+                                onKeyUp={this
+                                .search
+                                .bind(this)}
+                                placeholder="Begin typing to search"/>
+                        </form>
+                    : <div></div>
 }
                 <div className="entryWrapper">{this.renderEntries()}</div>
             </div>
