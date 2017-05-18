@@ -102,9 +102,23 @@ class App extends Component {
                 <div id="logo"><img id="logoimg" src="../img/book.png"/></div>
                 <ToastContainer
                     className="toast-container"
-                    removeCloseButton={true}
+                    closeButton={false}
                     autoClose={1500}
-                    position="top-center"/> {this.state.formVisible && this.props.currentUser
+                    position="top-center"/>
+                <AccountsUIWrapper/> {this.props.currentUser
+                    ? <form className="search">
+                            <input
+                                ref="search"
+                                type="input"
+                                name="search"
+                                onKeyUp={this
+                                .search
+                                .bind(this)}
+                                placeholder="Begin typing to search"/>
+                        </form>
+                    : <div></div>
+}
+                {this.state.formVisible && this.props.currentUser
                     ? <form className="form" id="addform" name="addform" onSubmit={this.handleSubmit}>
                             <input ref="fname" type="text" name="fname" placeholder="First name" required/>
                             <input ref="lname" type="text" name="lname" placeholder="Last name" required/>
@@ -134,25 +148,11 @@ class App extends Component {
                             margin: 1 + "em"
                         }}>Create an Account or Login</div>
 }
-                <AccountsUIWrapper/> {this.props.currentUser
-                    ? <form className="search">
-                            <input
-                                ref="search"
-                                type="input"
-                                name="search"
-                                onKeyUp={this
-                                .search
-                                .bind(this)}
-                                placeholder="Begin typing to search"/>
-                        </form>
-                    : <div></div>
-}
                 <div className="entryWrapper">{this.renderEntries()}</div>
             </div>
         );
     }
 }
-
 export default createContainer(() => {
     return {
         entries: Collection.find({}, {
