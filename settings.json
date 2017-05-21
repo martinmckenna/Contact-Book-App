@@ -1,7 +1,0 @@
-{
-  "galaxy.meteor.com": {
-     "env": {
-       "MONGO_URL": "mongodb://marty:Scranton14@ds143241.mlab.com:43241/reactcontactbook"
-     }
-   }
-}
